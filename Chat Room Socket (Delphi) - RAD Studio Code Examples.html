@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Chat_Room_Socket_(Delphi) -->
+<html lang="en" dir="ltr" class="client-js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./Chat Room Socket (Delphi) - RAD Studio Code Examples_files/load.php"></script>
+
+<title>Chat Room Socket (Delphi) - RAD Studio Code Examples</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+<meta name="generator" content="MediaWiki 1.23.13">
+<link rel="shortcut icon" href="http://docwiki.embarcadero.com/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/opensearch_desc.php" title="RAD Studio Code Examples (en)">
+<link rel="EditURI" type="application/rsd+xml" href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="RAD Studio Code Examples Atom feed" href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/index.php?title=Special:RecentChanges&amp;feed=atom">
+<link rel="stylesheet" href="./Chat Room Socket (Delphi) - RAD Studio Code Examples_files/load(1).php">
+<!--[if IE]><link rel="stylesheet" href="/CodeExamples/Tokyo/e/skins/DuoBook2/ie.css?303" media="screen" /><![endif]--><style>
+.dtree{font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#666;white-space:nowrap}.dtree img{border:0px;vertical-align:middle}.dTreeNode{height:18px }.dtree a{color:black;text-decoration:none}.dtree a.node,.dtree a.nodeSel{white-space:nowrap;padding:1px 2px 1px 2px}.dtree a:hover,.dtree a.node:hover,.dtree a.nodeSel:hover{color:black;text-decoration:underline}.dtree a.nodeSel{background-color:#c0d2ec}.dtree .clip{overflow:hidden;padding-bottom:1px} .dmenu{width:180px}.dmenu,.dmenu ul{padding:0;margin:0;list-style:none}.dmenu .selflink{font-weight:normal}.dmenu li{position:relative;float:left;width:172px;padding:4px;z-index:100}.dmenu li,.dmenu li.even a,.dmenu li.odd a,.dmenu li li,.dmenu li li a,.dmenu li li li,.dmenu li li li a{color :black}.dmenu li li{margin:0}.dmenu li ul{position:absolute;left:-999em;z-index:101;border:1px solid #ccc}.dmenu li ul ul{position:absolute;left:-999em;margin:0 0 0 0;z-index:102}.dmenu li.odd .submenu{width:12px;height:15px;float:right;background:url(http://docwiki.embarcadero.com/wiki/skins/common/images/Arr_r.png) 0 3px no-repeat}.dmenu li.even .submenu{width:12px;height:15px;float:right;background:url(http://docwiki.embarcadero.com/wiki/skins/common/images/Arr_r.png) 0 3px no-repeat}.dmenu li.odd{background:#E9EDF4;border:2px solid #E9EDF4}.dmenu li.even{background:#D0D8E8;border:2px solid #D0D8E8}.dmenu li:hover,.dmenu li.sfhover{border:2px solid #385D8A}.dmenu li:hover ul ul,.dmenu li:hover ul ul ul,.dmenu li.sfhover ul ul,.dmenu li.sfhover ul ul ul{left:-999em}.dmenu li:hover ul,.dmenu li li:hover ul,.dmenu li li li:hover ul,.dmenu li.sfhover ul,.dmenu li li.sfhover ul,.dmenu li li li.sfhover ul{left:182px;top:-3px}
+/* cache key: wikidb-cde_tokyo_en_:resourceloader:filter:minify-css:7:980a59e303a6e6f1c0261760c9252b5f */
+.mw-collapsible-toggle{float:right;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none} caption .mw-collapsible-toggle{float:none} li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+/* cache key: wikidb-cde_tokyo_en_:resourceloader:filter:minify-css:7:6c1d24e90626cec584f0869483f983e7 */
+.suggestions{overflow:hidden;position:absolute;top:0;left:0;width:0;border:none;z-index:1099;padding:0;margin:-1px -1px 0 0} html > body .suggestions{margin:-1px 0 0 0}.suggestions-special{position:relative;background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0;margin-top:-2px;display:none;padding:0.25em 0.25em;line-height:1.25em}.suggestions-results{background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0}.suggestions-result{color:black;margin:0;line-height:1.5em;padding:0.01em 0.25em;text-align:left; overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}.suggestions-result-current{background-color:#4C59A6;color:white}.suggestions-special .special-label{color:gray;text-align:left}.suggestions-special .special-query{color:black;font-style:italic;text-align:left}.suggestions-special .special-hover{background-color:silver}.suggestions-result-current .special-label,.suggestions-result-current .special-query{color:white}.highlight{font-weight:bold}
+/* cache key: wikidb-cde_tokyo_en_:resourceloader:filter:minify-css:7:9f9511aa4ef920d34591113e825e6a1e */
+.postedit-container{margin:0 auto;position:fixed;top:0;height:0;left:50%;z-index:1000;font-size:13px}.postedit-container:hover{cursor:pointer}.postedit{position:relative;top:0.6em;left:-50%;padding:.6em 3.6em .6em 1.1em;line-height:1.5625em;color:#626465;background-color:#f4f4f4;border:1px solid #dcd9d9;text-shadow:0 0.0625em 0 rgba(255,255,255,0.5);border-radius:5px;-webkit-box-shadow:0 2px 5px 0 #ccc;box-shadow:0 2px 5px 0 #ccc;-webkit-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;transition:all 0.25s ease-in-out}.skin-monobook .postedit{top:6em !important}.postedit-faded{opacity:0}.postedit-icon{padding-left:41px;  line-height:25px;background-repeat:no-repeat;background-position:8px 50%}.postedit-icon-checkmark{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABblBMVEUAAAD///////9PfTf///80aRdTgjn///9Feij///////////9Rfzf///////////9PfjZRgDh1o1xOfTb///////+bwYqLtnj///////9PfTa82K////9WhT6YxIL///9QgDdTgzr////////j7uDl7eLq8efi693k7OH///////9UhjuBr2rp9uRUhjr///9YljVKgir///9WiTlYjT3////9/v57vFlbkT5PjC9dlD/5/fhuq09stUTs9uhxuElctCpfnT1huDFloEZloUZmpENmvDZpvDxpvTxqvjxrvT5rvT9rwTxsqktswD5uwkBvuUdxw0NztFBztU9ztVBzwkp0tlJ1xkd2t1R3uVR4w1F4xk54x014yE15uVZ5v1R5xVB6v1R7yFJ8wVh9xVl9yFR9yVd9ylN+xVh+yFd/x1l/yFeAylmEx1+Ny2uY0Hqe04Wj1Ymv3Ze33qLD47TJ5L3O6cPU7Mrq9eb2+/Q4j37OAAAAQHRSTlMAAQIEBAUFBQwPFB4fJCUoKiosQEhJS01RUlZZXmdydXaChYuSlJSWmJmoq6uur8LExcvM19fg5ejt8fX2+Pr7SljgewAAAKpJREFUGBkFwQNCAwAAAMDLtl3LtrG4rWXbtvX77gAgZ6grFwC0bhwNVgKgdPZx8b0dgLi+s7Wn0VoAqpfOI9+BNADZI7fLrz2pSEwGHZuH+78lSK8ZLkLezF3ooyUG3VPXq2USei9WngeyoG195yBYWDF3E/2pAhl1e9Gr8bGT+bfOFCC2fnvh4X7rcqIAQNNu+HT6sxkAjceTL/2ZAIhv+PorBwBJxfkA//dFHSCBy/UTAAAAAElFTkSuQmCC);background-image:url(http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/resources/src/mediawiki.action/images/green-checkmark.png?2015-08-10T20:30:00Z)!ie;background-position:left}.postedit-close{position:absolute;padding:0 .8em;right:0;top:0;font-size:1.25em;font-weight:bold;line-height:2.3em;color:black;text-shadow:0 0.0625em 0 white;text-decoration:none;opacity:0.2;filter:alpha(opacity=20)}.postedit-close:hover{color:black;text-decoration:none;opacity:0.4;filter:alpha(opacity=40)}
+/* cache key: wikidb-cde_tokyo_en_:resourceloader:filter:minify-css:7:1a8e9ffebf71c84615763191538151d1 */</style><style>
+.suggestions a.mw-searchSuggest-link,.suggestions a.mw-searchSuggest-link:hover,.suggestions a.mw-searchSuggest-link:active,.suggestions a.mw-searchSuggest-link:focus{color:black;text-decoration:none}.suggestions-result-current a.mw-searchSuggest-link,.suggestions-result-current a.mw-searchSuggest-link:hover,.suggestions-result-current a.mw-searchSuggest-link:active,.suggestions-result-current a.mw-searchSuggest-link:focus{color:white}.suggestions a.mw-searchSuggest-link .special-query{ overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}
+/* cache key: wikidb-cde_tokyo_en_:resourceloader:filter:minify-css:7:ae3fa4570b5ac0c6cf7b3776c8ae4d6f */</style><meta name="ResourceLoaderDynamicStyles" content="">
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wikidb-cde_tokyo_en_:resourceloader:filter:minify-css:7:e222e2ddf71e02b7bdde962534c7feea */</style>
+<script src="./Chat Room Socket (Delphi) - RAD Studio Code Examples_files/load(2).php"></script><script src="./Chat Room Socket (Delphi) - RAD Studio Code Examples_files/load(3).php"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Chat_Room_Socket_(Delphi)","wgTitle":"Chat Room Socket (Delphi)","wgCurRevisionId":27424,"wgRevisionId":27424,"wgArticleId":12193,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Delphi","XE2"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Chat_Room_Socket_(Delphi)","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"preview":true,"previewDialog":false,"publish":false}});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":0,"shownumberswatching":1,"showtoolbar":1,"skin":"duobook2","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,
+"useeditwarning":1,"prefershttps":1,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"wikieditor-preview":1,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs101":false,"variant":"en"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":false,"watchToken":false});},{},{});
+/* cache key: wikidb-cde_tokyo_en_:resourceloader:filter:minify-js:7:ad44260fdcfb550f02ee7049b5682bb8 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax"]);
+}</script><script src="./Chat Room Socket (Delphi) - RAD Studio Code Examples_files/load(4).php"></script>
+<script type="text/javascript">window.tamBaseUrl='/CodeExamples/Tokyo/e/extensions/TreeAndMenu'</script>
+<script type="text/javascript" src="./Chat Room Socket (Delphi) - RAD Studio Code Examples_files/dtree.js.téléchargé"></script>
+<style type="text/css">/*<![CDATA[*/
+.source-delphi {line-height: normal;}
+.source-delphi li, .source-delphi pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for delphi
+ * CSS class: source-delphi, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.delphi.source-delphi .de1, .delphi.source-delphi .de2 {font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;font-family: monospace, monospace;}
+.delphi.source-delphi  {font-family:monospace;}
+.delphi.source-delphi .imp {font-weight: bold; color: red;}
+.delphi.source-delphi li, .delphi.source-delphi .li1 {font-weight: normal; vertical-align:top;}
+.delphi.source-delphi .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.delphi.source-delphi .li2 {font-weight: bold; vertical-align:top;}
+.delphi.source-delphi .kw1 {color: #000000; font-weight: bold;}
+.delphi.source-delphi .kw2 {color: #000000; font-weight: bold;}
+.delphi.source-delphi .kw3 {color: #000066;}
+.delphi.source-delphi .kw4 {color: #000066; font-weight: bold;}
+.delphi.source-delphi .co1 {color: #808080; font-style: italic;}
+.delphi.source-delphi .co2 {color: #008000; font-style: italic;}
+.delphi.source-delphi .coMULTI {color: #808080; font-style: italic;}
+.delphi.source-delphi .es0 {color: #ff0000; font-weight: bold;}
+.delphi.source-delphi .br0 {color: #000066;}
+.delphi.source-delphi .sy0 {color: #000066;}
+.delphi.source-delphi .sy1 {color: #000066;}
+.delphi.source-delphi .sy2 {color: #000066;}
+.delphi.source-delphi .sy3 {color: #000066;}
+.delphi.source-delphi .st0 {color: #ff0000;}
+.delphi.source-delphi .nu0 {color: #0000ff;}
+.delphi.source-delphi .me1 {color: #006600;}
+.delphi.source-delphi .re0 {color: #0000cc;}
+.delphi.source-delphi .re1 {color: #ff0000;}
+.delphi.source-delphi .ln-xtra, .delphi.source-delphi li.ln-xtra, .delphi.source-delphi div.ln-xtra {background-color: #ffc;}
+.delphi.source-delphi span.xtra { display:block; }
+
+/*]]>*/
+</style><style type="text/css">:root a[href^="http://www.drowle.com/"], :root #header + #content > #left > #rlblock_left, :root #\5f _mom_ad_2, :root #rhs_block .mod > .luhb-div > div[data-async-type="updateHotelBookingModule"], :root #\5f _admvnlb_modal_container, :root a[href^="http://keep2share.cc/pr/"], :root #MAIN.ShowTopic > .ad, :root #\5f _mom_ad_12, :root #center_col > #main > .dfrd > .mnr-c > .c._oc._zs, :root .__y_elastic .__y_item, :root aside[itemtype="https://schema.org/WPAdBlock"], :root [id*="MGWrap"], :root a[href^="https://t.mobtya.com/"], :root a[href^="http://ul.to/ref/"], :root #\5f _nq__hh[style="display:block!important"], :root a[href^="http://ads.pheedo.com/"], :root a[href^="http://landingpagegenius.com/"], :root .inlineNewsletterSubscription + .inlineNewsletterSubscription div[class$="_item"], :root #ads > .dose > .dosesingle, :root a[href^="http://lp.ncdownloader.com/"], :root a[href^="http://www.getyourguide.com/?partner_id="], :root a[href^="http://media.paddypower.com/redirect.aspx?"], :root a[href^="http://www.adskeeper.co.uk/"], :root #assetsListings[style="display: block;"], :root a[href^="http://b.bestcompleteusa.info/"], :root #main-content > [style="padding:10px 0 0 0 !important;"], :root a[href^="https://www.spyoff.com/"], :root #center_col > #\5f Emc, :root .ob_container a[data-redirect^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://easydownload4you.com/"], :root a[href^="http://secure.signup-way.com/"], :root #center_col > #res > #topstuff + #search > div > #ires > #rso > #flun, :root a[href^="http://cdn3.adexprts.com/"], :root a[href^="http://web.adblade.com/"], :root a[href^="http://www.affbuzzads.com/affiliate/"], :root #center_col > #resultStats + #tads, :root #center_col > #resultStats + #tads + #res + #tads, :root a[href^="http://track.trkvluum.com/"], :root #cnt #center_col > #taw > #tvcap > .c._oc._Lp, :root a[href^="http://codec.codecm.com/"], :root #center_col > #resultStats + div + #res + #tads, :root div[id^="div-gpt-ad"], :root #center_col > #resultStats + div[style="border:1px solid #dedede;margin-bottom:11px;padding:5px 7px 5px 6px"], :root a[href^="http://liversely.com/"], :root #topstuff > #tads, :root #center_col > #taw > #tvcap > .rscontainer, :root a[href^="http://www.bet365.com/"][href*="?affiliate="], :root #center_col > div[style="font-size:14px;margin-right:0;min-height:5px"] > div[style="font-size:14px;margin:0 4px;padding:1px 5px;background:#fff8e7"], :root a[href^="http://fileloadr.com/"], :root .gbfwa > div[class$="_item"], :root div[id^="ad_script_"], :root a[href^="http://www.friendlyadvertisements.com/"], :root #cnt #center_col > #res > #topstuff > .ts, :root #mn div[style="position:relative"] > #center_col > ._Ak, :root a[href^="http://affiliates.pinnaclesports.com/processing/"], :root a[href*=".clksite.com/"], :root #content > #center > .dose > .dosesingle, :root #content > #right > .dose > .dosesingle, :root a[href^="http://buysellads.com/"], :root a[href^="http://fsoft4down.com/"], :root #flowplayer > div[style="position: absolute; width: 300px; height: 275px; left: 222.5px; top: 85px; z-index: 999;"], :root #mn #center_col > div > h2.spon:first-child + ol:last-child, :root a[href^="http://www.easydownloadnow.com/"], :root a[href*="emprestimo.eu"], :root a[href^="http://n217adserv.com/"], :root .rc-cta[data-target], :root div[id^="ads120_600-widget"], :root #flowplayer > div[style="z-index: 208; position: absolute; width: 300px; height: 275px; left: 222.5px; top: 85px;"], :root a[href^="http://c.ketads.com/"], :root .GB3L-QEDGY .GB3L-QEDF- > .GB3L-QEDE-, :root #main_col > #center_col div[style="font-size:14px;margin:0 4px;padding:1px 5px;background:#fff7ed"], :root a[href^="http://www.usearchmedia.com/signup?"], :root .__zinit .__y_item, :root a[href^="http://banners.victor.com/processing/"], :root #mbEnd[cellspacing="0"][cellpadding="0"], :root a[href^="http://ads.sprintrade.com/"], :root #mn #center_col > div > h2.spon:first-child, :root #rhs_block > .ts[cellspacing="0"][cellpadding="0"][style="padding:0"], :root a[href^="http://farm.plista.com/pets"], :root .__yinit .__y_item, :root #mn div[style="position:relative"] > #center_col > div > ._dPg, :root #resultspanel > #topads, :root a[href^="https://www.firstload.com/affiliate/"], :root #rhs_block > #mbEnd, :root a[href^="http://www.faceporn.net/free?"], :root a[href^="http://uploaded.net/ref/"], :root #rhs_block .mod > .gws-local-hotels__booking-module, :root a[href^="http://jobitem.org/"], :root a[href^="http://www.fbooksluts.com/"], :root #rhs_block .xpdopen > ._OKe > div > .mod > ._yYf, :root #rhs_block > ol > .rhsvw > .kp-blk > .xpdopen > ._OKe > ol > ._DJe > .luhb-div, :root a[href^="http://www.moneyducks.com/"], :root .trc_rbox_div .syndicatedItem, :root a[href^="http://websitedhoome.com/"], :root .mw > #rcnt > #center_col > #taw > #tvcap > .c, :root a[href^="http://ad.yieldmanager.com/"], :root .lads[width="100%"][style="background:#FFF8DD"], :root a[href^="http://taboola-"][href*="/redirect.php?app.type="], :root #rhs_block > script + .c._oc._Ve.rhsvw, :root #tads + div + .c, :root a[href^="http://www.uniblue.com/cm/"], :root #rhswrapper > #rhssection[border="0"][bgcolor="#ffffff"], :root a[href^="http://ads.betfair.com/redirect.aspx?"], :root a[href^="https://mk-ads.com/"], :root #ssmiwdiv[jsdisplay], :root a[href^="http://adserver.itsfogo.com/"], :root .__ywl .__y_item, :root .GFYY1SVD2 > .GFYY1SVC2 > .GFYY1SVF5, :root a[href^="http://ads.activtrades.com/"], :root .GHOFUQ5BG2 > .GHOFUQ5BF2 > .GHOFUQ5BG5, :root div[id^="mainads"], :root .GFYY1SVE2 > .GFYY1SVD2 > .GFYY1SVG5, :root .jobs-information-call-to-action + .jobs-information-call-to-action div[class$="_item"], :root .GJJKPX2N1 > .GJJKPX2M1 > .GJJKPX2P4, :root a[href^="http://clickandjoinyourgirl.com/"], :root a[href^="http://www.terraclicks.com/"], :root a[href^="http://go.oclaserver.com/"], :root a[href^="http://paid.outbrain.com/network/redir?"], :root .GKJYXHBF2 > .GKJYXHBE2 > .GKJYXHBH5, :root .GPMV2XEDA2 > .GPMV2XEDP1 > .GPMV2XEDJBB, :root a[href^="http://www.streamtunerhd.com/signup?"], :root .Mpopup + #Mad > #MadZone, :root .__y_inner > .__y_item, :root .__ywvr .__y_item, :root .ch[onclick="ga(this,event)"], :root .icons-rss-feed + .icons-rss-feed div[class$="_item"], :root .l-container > #fishtank, :root a[href^="http://hyperlinksecure.com/go/"], :root a[href^="http://www.epicgameads.com/"], :root .mod > ._jH + .rscontainer, :root .mw > #rcnt > #center_col > #taw > .c, :root a[href^="http://clicks.binarypromos.com/"], :root a[href^="http://xads.zedo.com/"], :root .nrelate .nr_partner, :root .ob_container .item-container-obpd, :root a[href^="http://www.paddypower.com/?AFF_ID="], :root .ob_dual_right > .ob_ads_header ~ .odb_div, :root .plistaList > .itemLinkPET, :root a[href^="http://adtransfer.net/"], :root a[href^="http://bcp.crwdcntrl.net/"], :root .plistaList > .plista_widget_underArticle_item[data-type="pet"], :root a[href^="http://www.pinkvisualgames.com/?revid="], :root .plista_widget_belowArticleRelaunch_item[data-type="pet"], :root a[href*=".revimedia.com/"], :root a[href^="http://abc2.mobile-10.com/"], :root .ra[align="left"][width="30%"], :root .ra[align="right"][width="30%"], :root .ra[width="30%"][align="right"] + table[width="70%"][cellpadding="0"], :root .rhsvw[style="background-color:#fff;margin:0 0 14px;padding-bottom:1px;padding-top:1px;"], :root .rscontainer > .ellip, :root a[href^="http://record.sportsbetaffiliates.com.au/"], :root a[href^="http://www.fducks.com/"], :root .section-result[data-result-ad-type], :root a[href^="http://cinema.friendscout24.de?"], :root .trc_rbox .syndicatedItem, :root .trc_rbox_border_elm .syndicatedItem, :root .trc_rbox_div .syndicatedItemUB, :root .trc_rbox_div a[target="_blank"][href^="http://tab"], :root .trc_related_container div[data-item-syndicated="true"], :root .widget-pane-section-result[data-result-ad-type], :root a[href^="http://www.ringtonematcher.com/"], :root div[id^="div-adtech-ad-"], :root ADS-RIGHT, :root div[id^="div_openx_ad_"], :root AFS-AD, :root a[href^="//srv.buysellads.com/"], :root AMP-AD, :root a[href^="http://engine.newsmaxfeednetwork.com/"], :root [ad-id^="googlead"], :root [id*="MarketGid"], :root a[href^="http://1phads.com/"], :root [id*="ScriptRoot"], :root [lazy-ad="lefttop_banner"], :root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root [onclick*="content.ad/"], :root a[href^="http://pokershibes.com/index.php?ref="], :root [onclick^="window.open('http://adultfriendfinder.com/search/"], :root a[href^=" http://n47adshostnet.com/"], :root a[href^="http://ryushare.com/affiliate.python"], :root a[data-obtrack^="http://paid.outbrain.com/network/redir?"], :root a[data-oburl^="http://paid.outbrain.com/network/redir?"], :root a[href^="http://get.slickvpn.com/"], :root a[data-oburl^="https://paid.outbrain.com/network/redir?"], :root a[data-redirect^="http://click.plista.com/pets"], :root a[href^="http://affiliate.godaddy.com/"], :root a[data-redirect^="this.href='http://paid.outbrain.com/network/redir?"], :root a[href^="http://adclick.g.doubleclick.net/"], :root a[href^="https://bs.serving-sys.com"], :root a[data-url^="http://paid.outbrain.com/network/redir?"], :root a[data-url^="http://paid.outbrain.com/network/redir?"] + .author, :root a[href^="http://hd-plugins.com/download/"], :root a[data-widget-outbrain-redirect^="http://paid.outbrain.com/network/redir?"], :root a[href$="/vghd.shtml"], :root a[href*=".adk2x.com/"], :root a[href^="https://intrev.co/"], :root a[href^="http://mmo123.co/"], :root a[href*=".adsrv.eacdn.com/"] > img, :root a[href*=".ichlnk.com/"], :root a[href^="http://www.my-dirty-hobby.com/?sub="], :root a[href^="http://k2s.cc/pr/"], :root a[href*=".qertewrt.com/"], :root a[href*=".trust.zone"], :root a[href^="http://xtgem.com/click?"], :root a[href^="https://servedbyadbutler.com/"], :root a[href^="http://dwn.pushtraffic.net/"], :root a[href*="/adServe/banners?"], :root a[href^="http://www.ducksnetwork.com/"], :root a[href*="/adrotate-out.php?"], :root a[href*="/cmd.php?ad="], :root a[href*="=Adtracker"], :root a[href*="ad2upapp.com/"], :root a[href^="http://mgid.com/"], :root a[href^="http://www.freefilesdownloader.com/"], :root a[href^=" http://ads.ad-center.com/"], :root a[href^="http://ads.integral-marketing.com/"], :root a[href^="http://data.ad.yieldmanager.net/"], :root a[href*="googleme.eu"], :root a[href^="//tracking.content-recommendation.net/"][href*="/sponsored/click.html?"], :root a[href*="letsadvertisetogether.com"], :root a[href*="onclkds."], :root a[href*="pussl3.com"], :root a[href="http://track.freemmo2017.com/"], :root a[href^="//adbit.co/?a=Advertise&"], :root a[href^="http://www.roboform.com/php/land.php"], :root a[href^="//ads.ad-center.com/"], :root a[href^="//api.ad-goi.com/"], :root a[href^="//db52cc91beabf7e8.com/"], :root a[href^="//go.onclasrv.com/"], :root a[href^="http://www.revenuehits.com/"], :root a[href^="//jsmptjmp.com/"], :root a[href^="https://keep2share.cc/pr/"], :root a[href^="//porngames.adult/?SID="], :root a[href^="http://adtrackone.eu/"], :root a[href^="//t.MtagMonetizationA.com/"], :root a[href^="http://www.fpcTraffic2.com/blind/in.cgi?"], :root a[href^="//www.mgid.com/"], :root a[href^="http://www.babylon.com/welcome/index?affID"], :root a[href^="http://internalredirect.site/"], :root a[href^="https://www.share-online.biz/affiliate/"], :root a[href^="http://360ads.go2cloud.org/"], :root a[href^="http://3wr110.net/"], :root a[href^="http://www.menaon.com/installs/"], :root a[href^="http://NowDownloadAll.com"], :root a[href^="http://a.adquantix.com/"], :root a[href^="http://ad-apac.doubleclick.net/"], :root a[href^="http://prousa.work/"], :root a[href^="http://fusionads.net"], :root a[href^="http://ad-emea.doubleclick.net/"], :root a[href^="http://ad.au.doubleclick.net/"], :root a[href^="http://ad.doubleclick.net/"], :root a[href^="http://adexprt.me/"], :root a[href^="http://feedads.g.doubleclick.net/"], :root a[href^="http://adf.ly/?id="], :root a[href^="http://api.ringtonematcher.com/"], :root a[href^="http://adfarm.mediaplex.com/"], :root a[href^="http://www.clkads.com/adServe/"], :root a[href^="http://adlev.neodatagroup.com/"], :root a[href^="http://wgpartner.com/"], :root a[href^="http://admingame.info/"], :root a[href^="http://ads2.williamhill.com/redirect.aspx?"], :root a[href^="http://adprovider.adlure.net/"], :root a[href^="http://adrunnr.com/"], :root a[href^="http://www.sfippa.com/"], :root div[id^="div_ad_stack_"], :root a[href^="http://ads.ad-center.com/"], :root a[href^="https://paid.outbrain.com/network/redir?"], :root a[href^="http://ads.affbuzzads.com/"], :root a[href^="http://ads.expekt.com/affiliates/"], :root a[href^="https://trackjs.com/?utm_source"], :root a[href^="http://www.download-provider.org/"], :root a[href^="http://adserver.adtech.de/"], :root a[href^="http://adserver.adtechus.com/"], :root a[href^="http://cdn.adstract.com/"], :root a[href^="http://www.adxpansion.com"], :root a[href^="http://www.socialsex.com/"], :root iframe[src^="http://cdn1.adexprt.com/"], :root a[href^="http://adserving.liveuniversenetwork.com/"], :root a[href^="http://adserving.unibet.com/"], :root a[href^="http://adsrv.keycaptcha.com"], :root a[href^="https://dediseedbox.com/clients/aff.php?"], :root a[href^="http://www.installads.net/"], :root a[href^="http://clickserv.sitescout.com/"], :root a[href^="http://adtrack123.pl/"], :root a[href^="http://adultfriendfinder.com/p/register.cgi?pid="], :root a[href^="http://aff.ironsocket.com/"], :root a[href^="http://affiliate.coral.co.uk/processing/"], :root a[href^="http://affiliate.glbtracker.com/"], :root a[href^="http://affiliates.score-affiliates.com/"], :root a[href^="http://aflrm.com/"], :root div[id^="ads300_100-widget"], :root a[href^="http://www.dealcent.com/register.php?affid="], :root a[href^="http://www.greenmangaming.com/?tap_a="], :root aside[id^="div-gpt-ad"], :root a[href^="http://amzn.to/"] > img[src^="data"], :root a[href^="http://mojofun.info/"], :root a[href^="http://record.betsafe.com/"], :root a[href^="http://anonymous-net.com/"], :root a[href^="http://api.content.ad/"], :root a[href^="http://at.atwola.com/"], :root a[href^="http://bc.vc/?r="], :root a[href^="http://games.ucoz.ru/"][target="_blank"], :root a[href^="https://www.dsct1.com/"], :root a[href^="http://www.bet365.com/"][href*="&affiliate="], :root a[href^="http://bestorican.com/"], :root a[href^="http://betahit.click/"], :root a[href^="http://bluehost.com/track/"], :root a[href^="http://bonusfapturbo.nmvsite.com/"], :root a[href^="http://bs.serving-sys.com/"], :root a[href^="http://www.downloadthesefiles.com/"], :root a[href^="http://c.actiondesk.com/"], :root a[href^="http://goldmoney.com/?gmrefcode="], :root a[href^="http://callville.xyz/"], :root a[href^="http://campaign.bharatmatrimony.com/cbstrack/"], :root a[href^="http://campaign.bharatmatrimony.com/track/"], :root a[href^="http://casino-x.com/?partner"], :root a[href^="http://secure.signup-page.com/"], :root a[href^="http://cdn.adsrvmedia.net/"], :root a[href^="http://lp.ilivid.com/"], :root a[href^="http://cdn3.adbrau.com/"], :root a[href^="http://t.mdn2015x2.com/"], :root a[href^="http://www.accuserveadsystem.com/accuserve-go.php?"], :root a[href^="http://centertrust.xyz/"], :root a[style="display:block;width:300px;min-height:250px"][href^="http://li.cnet.com/click?"], :root a[href^="http://chaturbate.com/affiliates/"], :root div[id^="ads300_600-widget"], :root a[href^="http://click.guamwnvgashbkashawhgkhahshmashcas.pw/"], :root a[href^="http://www5.smartadserver.com/call/pubjumpi/"], :root a[href^="http://click.plista.com/pets"], :root a[href^="http://clicks.guamwnvgashbkashawhgkhahshmashcas.pw/"], :root a[href^="http://www.hitcpm.com/"], :root a[href^="http://clk.directrev.com/"], :root a[href^="http://clkmon.com/adServe/"], :root a[href^="http://connectlinking6.com/"], :root a[href^="http://contractallsticker.net/"], :root a[href^="http://cpaway.afftrack.com/"], :root a[href^="http://onclickads.net/"], :root a[href^="http://cwcams.com/landing/click/"], :root a[href^="http://d2.zedo.com/"], :root a[href^="http://data.committeemenencyclopedicrepertory.info/"], :root a[href^="https://ad.atdmt.com/"], :root a[href^="https://adhealers.com/"], :root a[href^="http://www.fonts.com/BannerScript/"], :root a[href^="http://data.linoleictanzaniatitanic.com/"], :root a[href^="http://databass.info/"], :root div[id^="dmRosAdWrapper"], :root a[href^="http://ddownload39.club/"], :root iframe[src^="http://static.mozo.com.au/strips/"], :root div[id^="dfp-ad-"], :root a[href^="http://www.myfreepaysite.com/sfw.php?aid"], :root a[href^="http://dethao.com/"], :root a[href^="http://dftrck.com/"], :root a[href^="http://down1oads.com/"], :root a[href^="http://www.torntvdl.com/"], :root input[onclick^="window.open('http://www.friendlyduck.com/"], :root a[href^="http://download-performance.com/"], :root a[href^="http://duckcash.eu/"], :root a[href^="http://eclkmpsa.com/"], :root a[href^="http://elite-sex-finder.com/?"], :root a[href^="http://www.downloadplayer1.com/"], :root a[href^="http://elitefuckbook.com/"], :root a[href^="http://extra.bet365.com/"][href*="?affiliate="], :root a[href^="http://t.wowtrk.com/"], :root a[href^="http://srvpub.com/"], :root a[href^="http://fileupnow.rocks/"], :root a[href^="http://finaljuyu.com/"], :root a[href^="http://findersocket.com/"], :root a[href^="http://go.mobisla.com/"], :root a[href^="http://freesoftwarelive.com/"], :root a[href^="http://t.mdn2015x1.com/"], :root a[href^="http://galleries.pinballpublishernetwork.com/"], :root iframe[id^="google_ads_iframe"], :root a[href^="http://galleries.securewebsiteaccess.com/"], :root a[href^="http://gca.sh/user/register?ref="], :root a[href^="http://www.affiliates1128.com/processing/"], :root a[href^="http://getlinksinaseconds.com/"], :root a[href^="http://go.ad2up.com/"], :root a[href^="http://go.seomojo.com/tracking202/"], :root a[href^="http://green.trafficinvest.com/"], :root a[href^="http://greensmoke.com/"], :root a[href^="http://promos.bwin.com/"], :root a[href^="http://n.admagnet.net/"], :root a[href^="http://guideways.info/"], :root a[href^="http://hdplugin.flashplayer-updates.com/"], :root a[target="_blank"][href^="http://api.taboola.com/"], :root a[href^="http://hyperies.info/"], :root a[href^="http://imads.integral-marketing.com/"], :root div[id^="ADV-SLOT-"], :root a[href^="http://install.securewebsiteaccess.com/"], :root a[href^="http://www.sex.com/?utm_"], :root a[href^="http://istri.it/?"], :root a[href^="http://join3.bannedsextapes.com/track/"], :root a[href^="http://latestdownloads.net/download.php?"], :root a[href^="http://linksnappy.com/?ref="], :root a[href^="http://liversely.net/"], :root a[href^="http://www.tirerack.com/affiliates/"], :root a[href^="http://lp.ezdownloadpro.info/"], :root a[href^="http://marketgid.com"], :root a[href^="http://www.idownloadplay.com/"], :root a[href^="https://pubads.g.doubleclick.net/"], :root a[href^="http://mo8mwxi1.com/"], :root a[href^="http://www.flashx.tv/downloadthis"], :root a[href^="http://online.ladbrokes.com/promoRedirect?"], :root a[href^="http://pan.adraccoon.com?"], :root div[id^="MarketGid"], :root a[href^="http://papi.mynativeplatform.com:80/pub2/"], :root a[href^="http://www.graboid.com/affiliates/"], :root a[href^="http://partner.sbaffiliates.com/"], :root a[href^="http://prochina.link/"], :root a[href^="http://serve.williamhill.com/promoRedirect?"], :root a[href^="http://prochina.space/"], :root a[href^="http://www.1clickdownloader.com/"], :root div[class^="Ad__bigBox"], :root a[href^="http://pubads.g.doubleclick.net/"], :root a[href^="http://pwrads.net/"], :root a[href^="http://www.brightwheel.info/"], :root a[href^="http://record.commissionking.com/"], :root a[href^="http://refer.webhostingbuzz.com/"], :root a[href^="http://tezfiles.com/pr/"], :root a[href^="http://rekoverr.com/"], :root a[href^="http://searchtabnew.com/"], :root a[href^="http://secure.hostgator.com/~affiliat/"], :root a[href^="http://webgirlz.online/landing/"], :root a[href^="http://see-work.info/"], :root a[href^="http://www.1clickmoviedownloader.info/"], :root a[href^="http://server.cpmstar.com/click.aspx?poolid="], :root a[href^="http://servicegetbook.net/"], :root a[href^="http://www.sex.com/pics/?utm_"], :root a[href^="http://sharesuper.info/"], :root a[href^="http://www.badoink.com/go.php?"], :root a[href^="http://stateresolver.link/"], :root a[href^="https://www.secureupload.eu/suprerefid="], :root a[href^="http://steel.starflavor.bid/"], :root a[href^="http://syndication.exoclick.com/"], :root a[href^="https://dcs.adgear.com/clicks/"], :root a[href^="http://t.mdn2015x3.com/"], :root a[href^="http://tour.affbuzzads.com/"], :root a[href^="http://track.adform.net/"], :root a[href^="http://wxdownloadmanager.com/dl/"], :root a[href^="http://track.incognitovpn.com/"], :root a[href^="http://www.pheedo.com/"], :root a[href^="http://tracking.crazylead.com/"], :root a[href^="http://www.friendlyquacks.com/"], :root a[href^="http://tracking.deltamediallc.com/"], :root a[href^="http://tracking.toroadvertising.com/"], :root a[href^="http://us.marketgid.com"], :root a[href^="http://www.firstload.com/affiliate/"], :root a[href^="http://webtrackerplus.com/"], :root a[href^="http://www.123-reg.co.uk/affiliate2.cgi"], :root a[href^="http://www.TwinPlan.com/AF_"], :root a[href^="http://www.bitlord.me/share/"], :root a[href^="http://www.adbrite.com/mb/commerce/purchase_form.php?"], :root a[href^="http://www.adshost2.com/"], :root a[href^="http://www.amazon.co.uk/exec/obidos/external-search?"], :root bottomadblock, :root div[id^="advads_"], :root a[href^="http://www.cash-duck.com/"], :root a[href^="http://www.clickansave.net/"], :root a[href^="http://www.coinducks.com/"], :root a[href^="http://www.dl-provider.com/search/"], :root a[href^="http://www.duckssolutions.com/"], :root a[href^="http://www.down1oads.com/"], :root a[href^="http://www.downloadweb.org/"], :root a[href^="http://www.duckcash.eu/"], :root a[href^="http://www.firstclass-download.com/"], :root a[href^="http://www.quick-torrent.com/download.html?aff"], :root a[href^="http://www.firstload.de/affiliate/"], :root a[href^="http://www.fleshlight.com/"], :root a[href^="http://www.gamebookers.com/cgi-bin/intro.cgi?"], :root a[href^="https://understandsolar.com/signup/?lead_source="][href*="&tracking_code="], :root a[href^="http://www.incredimail.com/?id="], :root a[href^="http://www.on2url.com/app/adtrack.asp"], :root a[href^="http://www.ireel.com/signup?ref"], :root a[href^="http://www.zergnet.com/i/"], :root a[href^="http://www.plus500.com/?id="], :root a[href^="http://www.linkbucks.com/referral/"], :root a[href^="http://www.liutilities.com/"], :root a[href^="http://www.liversely.net/"], :root iframe[id^="google_ads_frame"], :root a[href^="http://www.mobileandinternetadvertising.com/"], :root a[href^="http://www.myfreecams.com/?co_id="][href*="&track="], :root a[href^="http://www.myfreepaysite.com/sfw_int.php?aid"], :root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"], :root a[href^="https://go.ad2up.com/"], :root a[href^="http://www.mysuperpharm.com/"], :root a[href^="http://www.sex.com/videos/?utm_"], :root a[href^="https://ad.doubleclick.net/"], :root a[href^="http://www.myvpn.pro/"], :root a[href^="http://www.pinkvisualpad.com/?revid="], :root a[href^="http://www.ragazzeinvendita.com/?rcid="], :root a[href^="https://chaturbate.com/affiliates/"], :root a[href^="http://www.richducks.com/"], :root a[href^="http://www.securegfm.com/"], :root a[href^="https://dltags.com/"], :root a[href^="http://www.seekbang.com/cs/"], :root a[href^="http://www.sexgangsters.com/?pid="], :root a[href^="http://www.streamate.com/exports/"], :root a[href^="http://www.text-link-ads.com/"], :root a[href^="http://www.torntv-downloader.com/"], :root a[href^="http://www.twinplan.com/AF_"], :root a[href^="http://www.urmediazone.com/signup"], :root a[href^="http://www.wantstraffic.com/"], :root a[href^="http://www.webtrackerplus.com/"], :root a[href^="http://www.xmediaserve.com/"], :root a[href^="http://www.yourfuckbook.com/?"], :root a[href^="http://www1.clickdownloader.com/"], :root a[href^="https://www.adskeeper.co.uk/"], :root a[href^="http://yads.zedo.com/"], :root a[href^="http://z1.zedo.com/"], :root div[id^="ad-server-"], :root a[href^="http://zevera.com/afi.html"], :root a[href^="https://affiliates.bet-at-home.com/processing/"], :root a[href^="https://atomidownload.com/"], :root a[href^="https://awentw.com/"], :root a[href^="https://betway.com/"][href*="&a="], :root a[href^="https://click.plista.com/pets"], :root a[href^="https://evaporate.pw/"], :root a[href^="https://farm.plista.com/pets"], :root a[href^="https://secure.eveonline.com/ft/?aid="], :root a[href^="https://syndication.exoclick.com/splash.php?"], :root a[href^="https://torguard.net/aff.php"], :root a[href^="https://tracking.truthfinder.com/?a="], :root a[href^="https://trklvs.com/"], :root a[href^="https://trust.zone/go/r.php?RID="], :root a[href^="https://windscribe.com/promo/"], :root a[href^="https://www.camyou.com/?cam="][href*="&track="], :root a[href^="https://www.googleadservices.com/pagead/aclk?"], :root a[href^="https://www.oboom.com/ad/"], :root a[href^="https://www.popads.net/users/"], :root a[onmousedown^="this.href='/wp-content/embed-ad-content/"], :root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"], :root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"], :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"] + .ob_source, :root a[target="_blank"][onmousedown="this.href^='http://paid.outbrain.com/network/redir?"], :root div > [class][onclick*=".updateAnalyticsEvents"], :root div[class^="BlockAdvert-"], :root div[class$="dealnews"] > .dealnews, :root div[class*="_AdInArticle_"], :root div[class^="Ad__adContainer"], :root div[class^="Ad__container"], :root div[class^="block-openx-"], :root div[class^="gemini-ad"], :root div[class^="local-feed-banner-ads"], :root div[class^="proadszone-"], :root div[id^="YFBMSN"], :root div[id^="acm-ad-tag-"], :root div[id^="ad-div-"], :root div[id^="adrotate_widgets-"], :root div[id^="ads250_250-widget"], :root div[id^="ads300_250-widget"], :root div[id^="advads-"], :root div[id^="block-views-topheader-ad-block-"], :root div[id^="cns_ads_"], :root div[id^="crt-"][style], :root div[id^="dfp-slot-"], :root div[id^="google_ads_iframe_"], :root div[id^="google_dfp_"], :root div[id^="lazyad-"], :root div[id^="proadszone-"], :root div[id^="q1-adset-"], :root div[id^="zergnet-widget"], :root div[itemtype="http://schema.org/WPAdBlock"], :root topadblock, :root div[itemtype="http://www.schema.org/WPAdBlock"], :root iframe[src^="http://ad.yieldmanager.com/"], :root iframe[src^="http://cdn2.adexprt.com/"], :root img[alt^="Fuckbook"], :root input[onclick^="window.open('http://www.FriendlyDuck.com/"], :root p[id^="div-gpt-ad-"], :root script[src^="http://free-shoutbox.net/app/webroot/shoutbox/sb.php?shoutbox="] + #freeshoutbox_content, :root td[valign="top"] > .mainmenu[style="padding:10px 0 0 0 !important;"] { display: none !important; }</style></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Chat_Room_Socket_Delphi skin-duobook2 action-view">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+				<h1 id="firstHeading" class="firstHeading"><span dir="ltr">Chat Room Socket (Delphi)</span></h1>
+	<div id="bodyContent" class="mw-body">
+		<div id="siteSub">From RAD Studio Code Examples</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav" class="mw-jump">Jump to: <a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Chat_Room_Socket_(Delphi)#column-one">navigation</a>, <a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Chat_Room_Socket_(Delphi)#searchInput">search</a></div>
+		<!-- start content -->
+<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2><span class="toctoggle">&nbsp;[<a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Chat_Room_Socket_(Delphi)#" class="internal" id="togglelink">hide</a>]&nbsp;</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Chat_Room_Socket_(Delphi)#Description"><span class="tocnumber">1</span> <span class="toctext">Description</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Chat_Room_Socket_(Delphi)#Code"><span class="tocnumber">2</span> <span class="toctext">Code</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Chat_Room_Socket_(Delphi)#Uses"><span class="tocnumber">3</span> <span class="toctext">Uses</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Chat_Room_Socket_(Delphi)#See_Also"><span class="tocnumber">3.1</span> <span class="toctext">See Also</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h1><span class="mw-headline" id="Description">Description</span></h1>
+<p>This example builds a Chat Room using sockets components. To build the example, follow the instructions:
+</p>
+<ol>
+<li><a href="http://docwiki.embarcadero.com/RADStudio/Tokyo/en/Installing_Socket_Components" class="extiw" title="rad en:Installing Socket Components">Install the  socket components</a>.</li>   
+<li> Create a <b>VCL Forms Application</b> and save it as <b>Server</b>.
+</li>
+<li> In the <b> Project  Manager</b>, right-click <font color="#598527"><b>ProjectGroup1 &gt; Add New Project</b></font>  and add a new <b>VCL Forms Application</b>. Save it as <b>Client</b>.</li>
+<li> Add two buttons (Send and Start/Stop), a memo box, an edit box, and a <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TServerSocket" class="extiw" title="lib en:System.Win.ScktComp.TServerSocket">TServerSocket</a> from the <b>Tool Palette</b> to the <b>Server</b> form.</li>
+<li> Add two buttons (Send and Connect/Disconnect), a memo box, an edit box, and a <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TClientSocket" class="extiw" title="lib en:System.Win.ScktComp.TClientSocket">TClientSocket</a> from the <b>Tool Palette to the </b>Client<b> form.</b>
+<h1><span class="mw-headline" id="Code">Code</span></h1>
+</li>
+<li> 
+In <b>Server.pas</b>
+<ol>
+  <li>Add to the TForm1 class a private variable, <code>Str</code>, of type String, in which to save the messages received or sent by the server.</li>
+  <li>Add the code below to the <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/Vcl.StdCtrls.TButton.OnClick" class="extiw" title="lib en:Vcl.StdCtrls.TButton.OnClick">OnClick</a> event of the Start button:
+
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="delphi source-delphi"><pre class="de1"><span class="kw1">procedure</span> TForm1<span class="sy1">.</span><span class="me1">Button2Click</span><span class="br0">(</span>Sender<span class="sy1">:</span> <span class="kw4">TObject</span><span class="br0">)</span><span class="sy1">;</span>
+<span class="kw1">begin</span>
+   <span class="kw1">if</span><span class="br0">(</span>ServerSocket1<span class="sy1">.</span><span class="me1">Active</span> <span class="sy3">=</span> <span class="kw2">False</span><span class="br0">)</span><span class="co1">//The button caption is ‘Start’</span>
+   <span class="kw1">then</span>
+   <span class="kw1">begin</span>
+      ServerSocket1<span class="sy1">.</span><span class="me1">Active</span> <span class="sy1">:</span><span class="sy3">=</span> <span class="kw2">True</span><span class="sy1">;</span><span class="co1">//Activates the server socket</span>
+      Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy1">:</span><span class="sy3">=</span>Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy3">+</span><span class="st0">'Server Started'</span><span class="sy3">+</span><span class="re1">#13</span><span class="re1">#10</span><span class="sy1">;</span>
+      Button2<span class="sy1">.</span><span class="me1">Caption</span><span class="sy1">:</span><span class="sy3">=</span><span class="st0">'Stop'</span><span class="sy1">;</span><span class="co1">//Set the button caption </span>
+   <span class="kw1">end</span>
+   <span class="kw1">else</span><span class="co1">//The button caption is ‘Stop’</span>
+   <span class="kw1">begin</span>
+      ServerSocket1<span class="sy1">.</span><span class="me1">Active</span> <span class="sy1">:</span><span class="sy3">=</span> <span class="kw2">False</span><span class="sy1">;</span><span class="co1">//Stops the server socket</span>
+      Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy1">:</span><span class="sy3">=</span>Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy3">+</span><span class="st0">'Server Stopped'</span><span class="sy3">+</span><span class="re1">#13</span><span class="re1">#10</span><span class="sy1">;</span>
+      Button2<span class="sy1">.</span><span class="me1">Caption</span><span class="sy1">:</span><span class="sy3">=</span><span class="st0">'Start'</span><span class="sy1">;</span>
+     <span class="co1">//If the server is closed, then it cannot send any messages</span>
+      Button1<span class="sy1">.</span><span class="me1">Enabled</span><span class="sy1">:</span><span class="sy3">=</span><span class="kw2">false</span><span class="sy1">;</span><span class="co1">//Disables the “Send” button</span>
+      Edit1<span class="sy1">.</span><span class="me1">Enabled</span><span class="sy1">:</span><span class="sy3">=</span><span class="kw2">false</span><span class="sy1">;</span><span class="co1">//Disables the edit box</span>
+   <span class="kw1">end</span><span class="sy1">;</span>
+<span class="kw1">end</span><span class="sy1">;</span></pre></div></div></li>
+<li>Add the code below to the <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/Vcl.StdCtrls.TButton.OnClick" class="extiw" title="lib en:Vcl.StdCtrls.TButton.OnClick">OnClick</a> event of the Send button:
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="delphi source-delphi"><pre class="de1"><span class="kw1">procedure</span> TForm2<span class="sy1">.</span><span class="me1">Button1Click</span><span class="br0">(</span>Sender<span class="sy1">:</span> <span class="kw4">TObject</span><span class="br0">)</span><span class="sy1">;</span>
+<span class="kw1">var</span>
+  i<span class="sy1">:</span> <span class="kw4">integer</span><span class="sy1">;</span>
+<span class="kw1">begin</span>
+     Str<span class="sy1">:</span><span class="sy3">=</span>Edit1<span class="sy1">.</span><span class="me1">Text</span><span class="sy1">;</span><span class="co1">//Take the string (message) sent by the server</span>
+     Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy1">:</span><span class="sy3">=</span>Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy3">+</span><span class="st0">'me: '</span><span class="sy3">+</span>Str<span class="sy3">+</span><span class="re1">#13</span><span class="re1">#10</span><span class="sy1">;</span><span class="co1">//Adds the message to the memo box</span>
+     Edit1<span class="sy1">.</span><span class="me1">Text</span><span class="sy1">:</span><span class="sy3">=</span><span class="st0">''</span><span class="sy1">;</span><span class="co1">//Clears the edit box</span>
+<span class="co1">//Sends the messages to all clients connected to the server</span>
+     <span class="kw1">for</span> i<span class="sy1">:</span><span class="sy3">=</span><span class="nu0">0</span> <span class="kw1">to</span> ServerSocket1<span class="sy1">.</span><span class="me1">Socket</span><span class="sy1">.</span><span class="me1">ActiveConnections</span><span class="sy3">-</span><span class="nu0">1</span> <span class="kw1">do</span>
+      ServerSocket1<span class="sy1">.</span><span class="me1">Socket</span><span class="sy1">.</span><span class="me1">Connections</span><span class="br0">[</span>i<span class="br0">]</span><span class="sy1">.</span><span class="me1">SendText</span><span class="br0">(</span>str<span class="br0">)</span><span class="sy1">;</span><span class="co1">//Sent </span>
+<span class="kw1">end</span><span class="sy1">;</span></pre></div></div>
+</li>
+<li>Add the code below to the <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TServerSocket.OnClientConnect" class="extiw" title="lib en:System.Win.ScktComp.TServerSocket.OnClientConnect">OnClientConnect</a> event of <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TServerSocket" class="extiw" title="lib en:System.Win.ScktComp.TServerSocket">TServerSocket</a>:
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="delphi source-delphi"><pre class="de1"><span class="kw1">procedure</span> TForm1<span class="sy1">.</span><span class="me1">ServerSocket1ClientConnect</span><span class="br0">(</span>Sender<span class="sy1">:</span> <span class="kw4">TObject</span><span class="sy1">;</span>  Socket<span class="sy1">:</span> TCustomWinSocket<span class="br0">)</span><span class="sy1">;</span>
+<span class="kw1">begin</span>
+  Socket<span class="sy1">.</span><span class="me1">SendText</span><span class="br0">(</span><span class="st0">'Connected'</span><span class="br0">)</span><span class="sy1">;</span><span class="co1">//Sends a message to the client</span>
+<span class="co1">//If at least a client is connected to the server, then the server can communicate</span>
+<span class="co1">//Enables the Send button and the edit box    </span>
+  Button1<span class="sy1">.</span><span class="me1">Enabled</span><span class="sy1">:</span><span class="sy3">=</span><span class="kw2">true</span><span class="sy1">;</span>
+  Edit1<span class="sy1">.</span><span class="me1">Enabled</span><span class="sy1">:</span><span class="sy3">=</span><span class="kw2">true</span><span class="sy1">;</span>
+<span class="kw1">end</span><span class="sy1">;</span></pre></div></div>
+</li>
+<li> Add the code below to the <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TServerSocket.OnClientDisconnect" class="extiw" title="lib en:System.Win.ScktComp.TServerSocket.OnClientDisconnect">OnClientDisconnect</a> event of <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TServerSocket" class="extiw" title="lib en:System.Win.ScktComp.TServerSocket">TServerSocket</a>:
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="delphi source-delphi"><pre class="de1"><span class="kw1">procedure</span> TForm1<span class="sy1">.</span><span class="me1">ServerSocket1ClientDisconnect</span><span class="br0">(</span>Sender<span class="sy1">:</span> <span class="kw4">TObject</span><span class="sy1">;</span>
+  Socket<span class="sy1">:</span> TCustomWinSocket<span class="br0">)</span><span class="sy1">;</span>
+<span class="kw1">Begin</span>
+<span class="co1">//The server cannot send messages if there is no client connected to it</span>
+  <span class="kw1">if</span> ServerSocket1<span class="sy1">.</span><span class="me1">Socket</span><span class="sy1">.</span><span class="me1">ActiveConnections</span><span class="sy3">-</span><span class="nu0">1</span><span class="sy3">=</span><span class="nu0">0</span> <span class="kw1">then</span>
+  <span class="kw1">begin</span>
+    Button1<span class="sy1">.</span><span class="me1">Enabled</span><span class="sy1">:</span><span class="sy3">=</span><span class="kw2">false</span><span class="sy1">;</span>
+    Edit1<span class="sy1">.</span><span class="me1">Enabled</span><span class="sy1">:</span><span class="sy3">=</span><span class="kw2">false</span><span class="sy1">;</span>
+  <span class="kw1">end</span><span class="sy1">;</span>
+<span class="kw1">end</span><span class="sy1">;</span></pre></div></div>
+</li>
+<li> Add the code below to the <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TServerSocket.OnClientRead" class="extiw" title="lib en:System.Win.ScktComp.TServerSocket.OnClientRead">OnClientRead</a> event of <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TServerSocket" class="extiw" title="lib en:System.Win.ScktComp.TServerSocket">TServerSocket</a>:
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="delphi source-delphi"><pre class="de1"><span class="kw1">procedure</span> TForm1<span class="sy1">.</span><span class="me1">ServerSocket1ClientRead</span><span class="br0">(</span>Sender<span class="sy1">:</span> <span class="kw4">TObject</span><span class="sy1">;</span>
+  Socket<span class="sy1">:</span> TCustomWinSocket<span class="br0">)</span><span class="sy1">;</span>
+<span class="kw1">Begin</span>
+<span class="co1">//Read the message received from the client and add it to the memo text</span>
+<span class="co1">// The client identifier appears in front of the message</span>
+  Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy1">:</span><span class="sy3">=</span>Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy3">+</span><span class="st0">'Client'</span><span class="sy3">+</span><span class="kw3">IntToStr</span><span class="br0">(</span>Socket<span class="sy1">.</span><span class="me1">SocketHandle</span><span class="br0">)</span><span class="sy3">+</span><span class="st0">'&nbsp;:'</span><span class="sy3">+</span>Socket<span class="sy1">.</span><span class="me1">ReceiveText</span><span class="sy3">+</span><span class="re1">#13</span><span class="re1">#10</span><span class="sy1">;</span>
+<span class="kw1">end</span><span class="sy1">;</span></pre></div></div>
+</li>
+</ol>
+</li>
+<li> In <b>Client.pas</b>
+<ol>
+<li>Add to the TForm2 class a private variable, <code>Str</code>, of type String, in which to save the messages received or sent by the client.</li>
+<li> Add the code below to the <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/Vcl.StdCtrls.TButton.OnClick" class="extiw" title="lib en:Vcl.StdCtrls.TButton.OnClick">OnClick</a> event of the Connect button:
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="delphi source-delphi"><pre class="de1"><span class="kw1">procedure</span> TForm2<span class="sy1">.</span><span class="me1">Button2Click</span><span class="br0">(</span>Sender<span class="sy1">:</span> <span class="kw4">TObject</span><span class="br0">)</span><span class="sy1">;</span>
+<span class="kw1">begin</span>
+<span class="co1">//127.0.0.1 is the standard IP address to loop back to your own machine</span>
+    ClientSocket1<span class="sy1">.</span><span class="me1">Address</span><span class="sy1">:</span><span class="sy3">=</span><span class="st0">'127.0.0.1'</span><span class="sy1">;</span>
+    ClientSocket1<span class="sy1">.</span><span class="me1">Active</span> <span class="sy1">:</span><span class="sy3">=</span> <span class="kw2">True</span><span class="sy1">;</span><span class="co1">//Activates the client</span>
+&nbsp;
+ <span class="kw1">if</span><span class="br0">(</span>ClientSocket1<span class="sy1">.</span><span class="me1">Socket</span><span class="sy1">.</span><span class="me1">Connected</span><span class="sy3">=</span><span class="kw2">True</span><span class="br0">)</span>
+    <span class="kw1">then</span>
+    <span class="kw1">begin</span>
+      str<span class="sy1">:</span><span class="sy3">=</span><span class="st0">'Disconnected'</span><span class="sy1">;</span>
+      ClientSocket1<span class="sy1">.</span><span class="me1">Active</span> <span class="sy1">:</span><span class="sy3">=</span> <span class="kw2">False</span><span class="sy1">;</span><span class="co1">//Disconnects the client</span>
+      Button2<span class="sy1">.</span><span class="me1">Caption</span><span class="sy1">:</span><span class="sy3">=</span><span class="st0">'Connect'</span><span class="sy1">;</span>
+    <span class="kw1">end</span><span class="sy1">;</span>
+<span class="kw1">end</span><span class="sy1">;</span></pre></div></div>
+</li>
+<li> Add the code below to the <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/Vcl.StdCtrls.TButton.OnClick" class="extiw" title="lib en:Vcl.StdCtrls.TButton.OnClick">OnClick</a> event of the Send button:
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="delphi source-delphi"><pre class="de1"><span class="kw1">procedure</span> TForm2<span class="sy1">.</span><span class="me1">Button1Click</span><span class="br0">(</span>Sender<span class="sy1">:</span> <span class="kw4">TObject</span><span class="br0">)</span><span class="sy1">;</span>
+<span class="kw1">begin</span>
+    Str<span class="sy1">:</span><span class="sy3">=</span>Edit1<span class="sy1">.</span><span class="me1">Text</span><span class="sy1">;</span>
+    Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy1">:</span><span class="sy3">=</span>Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy3">+</span><span class="st0">'me: '</span><span class="sy3">+</span>str<span class="sy3">+</span><span class="re1">#13</span><span class="re1">#10</span><span class="sy1">;</span>
+    Edit1<span class="sy1">.</span><span class="me1">Text</span><span class="sy1">:</span><span class="sy3">=</span><span class="st0">''</span><span class="sy1">;</span><span class="co1">//Clears the edit box</span>
+    ClientSocket1<span class="sy1">.</span><span class="me1">Socket</span><span class="sy1">.</span><span class="me1">SendText</span><span class="br0">(</span>str<span class="br0">)</span><span class="sy1">;</span><span class="co1">//Send the messages to the server</span>
+<span class="kw1">end</span><span class="sy1">;</span></pre></div></div>
+</li>
+<li> Add the code below to the <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TClientSocket.OnDisconnect" class="extiw" title="lib en:System.Win.ScktComp.TClientSocket.OnDisconnect">OnDisconnect</a> event of <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TClientSocket" class="extiw" title="lib en:System.Win.ScktComp.TClientSocket">TClientSocket</a>:
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="delphi source-delphi"><pre class="de1"><span class="kw1">procedure</span> TForm2<span class="sy1">.</span><span class="me1">ClientSocket1Disconnect</span><span class="br0">(</span>Sender<span class="sy1">:</span> <span class="kw4">TObject</span><span class="sy1">;</span>  Socket<span class="sy1">:</span> TCustomWinSocket<span class="br0">)</span><span class="sy1">;</span>
+<span class="kw1">begin</span>
+   Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy1">:</span><span class="sy3">=</span>Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy3">+</span><span class="st0">'Disconnect'</span><span class="sy3">+</span><span class="re1">#13</span><span class="re1">#10</span><span class="sy1">;</span>
+   Socket<span class="sy1">.</span><span class="me1">SendText</span><span class="br0">(</span>str<span class="br0">)</span><span class="sy1">;</span><span class="co1">//Send the “Disconnected” message to the server</span>
+<span class="co1">//str is set to “Disconnected” when the Disconnect button is pressed</span>
+<span class="co1">//A client cannot send messages if it is not connected to a server</span>
+   Button1<span class="sy1">.</span><span class="me1">Enabled</span><span class="sy1">:</span><span class="sy3">=</span><span class="kw2">False</span><span class="sy1">;</span>
+   Edit1<span class="sy1">.</span><span class="me1">Enabled</span><span class="sy1">:</span><span class="sy3">=</span><span class="kw2">False</span><span class="sy1">;</span>
+   Button2<span class="sy1">.</span><span class="me1">Caption</span><span class="sy1">:</span><span class="sy3">=</span><span class="st0">'Connect'</span><span class="sy1">;</span>
+<span class="kw1">end</span><span class="sy1">;</span></pre></div></div>
+</li>
+<li> Add the code below to the <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TClientSocket.OnError" class="extiw" title="lib en:System.Win.ScktComp.TClientSocket.OnError">OnError</a> event of <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TClientSocket" class="extiw" title="lib en:System.Win.ScktComp.TClientSocket">TClientSocket</a>:
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="delphi source-delphi"><pre class="de1"><span class="kw1">procedure</span> TForm2<span class="sy1">.</span><span class="me1">ClientSocket1Error</span><span class="br0">(</span>Sender<span class="sy1">:</span> <span class="kw4">TObject</span><span class="sy1">;</span> Socket<span class="sy1">:</span> TCustomWinSocket<span class="sy1">;</span>  ErrorEvent<span class="sy1">:</span> TErrorEvent<span class="sy1">;</span> <span class="kw1">var</span> ErrorCode<span class="sy1">:</span> <span class="kw4">Integer</span><span class="br0">)</span><span class="sy1">;</span>
+<span class="kw1">begin</span>
+  ErrorCode<span class="sy1">:</span><span class="sy3">=</span><span class="nu0">0</span><span class="sy1">;</span>
+  ClientSocket1<span class="sy1">.</span><span class="me1">Active</span> <span class="sy1">:</span><span class="sy3">=</span> <span class="kw2">False</span><span class="sy1">;</span>
+<span class="co1">// This can happen when no active server is started</span>
+  Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy1">:</span><span class="sy3">=</span>Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy3">+</span><span class="st0">'No connection found'</span><span class="sy3">+</span><span class="re1">#13</span><span class="re1">#10</span><span class="sy1">;</span>
+<span class="kw1">end</span><span class="sy1">;</span></pre></div></div>
+</li>
+<li> Add the code below to the <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TClientSocket.OnRead" class="extiw" title="lib en:System.Win.ScktComp.TClientSocket.OnRead">OnRead</a> event of <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TClientSocket" class="extiw" title="lib en:System.Win.ScktComp.TClientSocket">TClientSocket</a>:
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr"><div class="delphi source-delphi"><pre class="de1"><span class="kw1">procedure</span> TForm1<span class="sy1">.</span><span class="me1">ClientSocket1Read</span><span class="br0">(</span>Sender<span class="sy1">:</span> <span class="kw4">TObject</span><span class="sy1">;</span> Socket<span class="sy1">:</span> TCustomWinSocket<span class="br0">)</span><span class="sy1">;</span>
+<span class="kw1">begin</span>
+<span class="co1">//Reads and displays the message received from the server;</span>
+    Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy1">:</span><span class="sy3">=</span>Memo1<span class="sy1">.</span><span class="me1">Text</span><span class="sy3">+</span><span class="st0">'Server: '</span><span class="sy3">+</span>Socket<span class="sy1">.</span><span class="me1">ReceiveText</span><span class="sy3">+</span><span class="re1">#13</span><span class="re1">#10</span><span class="sy1">;</span>
+<span class="kw1">end</span><span class="sy1">;</span></pre></div></div>
+</li>
+</ol>
+</li>
+</ol>
+<p>To test the example:
+</p>
+<ol>
+<li> In the <b>Project  Manager</b>, right-click <b>Server.exe</b> and then press <b>Run</b>.
+</li>
+<li> Right-click <b>Client.exe</b> and then <b>Run without debugging</b>.
+</li>
+<li> Start the <b>Server</b> by pressing the Start button from the server form.
+</li>
+<li> Connect the <b>Client</b> by pressing the Connect button from the client form.
+</li>
+<li> Start sending messages from server to client, and from client to server.
+</li>
+</ol>
+<h1><span class="mw-headline" id="Uses">Uses</span></h1>
+<ul>
+<li> <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TServerSocket" class="extiw" title="lib en:System.Win.ScktComp.TServerSocket">System.Win.ScktComp.TServerSocket</a> 
+</li>
+<li> <a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/System.Win.ScktComp.TClientSocket" class="extiw" title="lib en:System.Win.ScktComp.TClientSocket">System.Win.ScktComp.TClientSocket</a>
+</li>
+</ul>
+<h2><span class="mw-headline" id="See_Also">See Also</span></h2>
+<ul>
+<li> <a href="http://docwiki.embarcadero.com/RADStudio/Tokyo/en/Installing_Socket_Components" class="extiw" title="rad en:Installing Socket Components">Installing Socket Components</a>
+</li>
+<li> <a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Chat_Room_Socket_(C%2B%2B)" title="Chat Room Socket (C++)">Chat Room Socket (C++)</a>
+</li>
+</ul>
+
+<!-- Tidy found serious XHTML errors -->
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.201 seconds
+Real time usage: 0.393 seconds
+Preprocessor visited node count: 105/1000000
+Preprocessor generated node count: 222/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wikidb-cde_tokyo_en_:pcache:idhash:12193-0!*!0!!en!*!* and timestamp 20180322121735 and revision id 27424
+ -->
+</div><div class="printfooter">
+Retrieved from "<a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/index.php?title=Chat_Room_Socket_(Delphi)&amp;oldid=27424">http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/index.php?title=Chat_Room_Socket_(Delphi)&amp;oldid=27424</a>"</div>
+		<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Category:Delphi" title="Category:Delphi">Delphi</a></li><li><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Category:XE2" title="Category:XE2">XE2</a></li></ul></div></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				<li id="ca-nstab-main" class="selected"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Chat_Room_Socket_(Delphi)" title="View the content page [shift-esc-c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/index.php?title=Talk:Chat_Room_Socket_(Delphi)&amp;action=edit&amp;redlink=1" title="Discussion about the content page [shift-esc-t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/index.php?title=Chat_Room_Socket_(Delphi)&amp;action=edit" title="This page is protected.
+You can view its source [shift-esc-e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/index.php?title=Chat_Room_Socket_(Delphi)&amp;action=history" rel="archives" title="Past revisions of this page [shift-esc-h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-createaccount"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/index.php?title=Special:UserLogin&amp;returnto=Chat+Room+Socket+%28Delphi%29&amp;type=signup">Create account</a></li>
+				<li id="pt-login"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/index.php?title=Special:UserLogin&amp;returnto=Chat+Room+Socket+%28Delphi%29" title="You are encouraged to log in; however, it is not mandatory [shift-esc-o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+<a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Main_Page" style="background-image: url(/CodeExamples/Tokyo/e/skins/common/images/embarcadero_logo.png);" title="Visit the main page"></a>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/index.php" id="searchform">
+				<input type="hidden" name="title" value="Special:Search">
+				<input type="search" name="search" placeholder="Search" title="Search RAD Studio Code Examples [shift-esc-f]" accesskey="f" id="searchInput" autocomplete="off">
+				<input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchGoButton" class="searchButton">&nbsp;
+				<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton">
+			</form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-RAD_Studio_10.2_Tokyo">
+		<h5>RAD Studio 10.2 Tokyo</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Topics"><a href="http://docwiki.embarcadero.com/RADStudio/Tokyo/en/Main_Page">Topics</a></li>
+				<li id="n-Libraries-Reference"><a href="http://docwiki.embarcadero.com/Libraries/Tokyo/en/Main_Page">Libraries Reference</a></li>
+				<li id="n-Code-Examples"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Main_Page">Code Examples</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-RAD_Studio_10.2_Code_Examples">
+		<h5>RAD Studio 10.2 Code Examples</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Code-Examples-Index"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Code_Examples_Index">Code Examples Index</a></li>
+				<li id="n-Code-Examples-by-Functionality"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Code_Examples_by_Functionality">Code Examples by Functionality</a></li>
+				<li id="n-Delphi-Code-Examples-and-Application-Samples"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Category:Delphi">Delphi Code Examples and Application Samples</a></li>
+				<li id="n-C.2B.2B-Code-Examples-and-Application-Samples"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Category:C%2B%2B">C++ Code Examples and Application Samples</a></li>
+				<li id="n-All-Documented-Application-Samples"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Category:Sample">All Documented Application Samples</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-Previous_Versions">
+		<h5>Previous Versions</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-Berlin-Code-Examples"><a href="http://docwiki.embarcadero.com/CodeExamples/Berlin/en/Special:Search/Chat%20Room%20Socket%20(Delphi)" rel="nofollow">Berlin Code Examples</a></li>
+				<li id="n-Older-Versions"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Help_of_Previous_Versions">Older Versions</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-Assistance">
+		<h5>Assistance</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-recentchanges"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Special:RecentChanges" title="A list of recent changes in the wiki [shift-esc-r]" accesskey="r">Recent changes</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Special:WhatLinksHere/Chat_Room_Socket_(Delphi)" title="A list of all wiki pages that link here [shift-esc-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Special:RecentChangesLinked/Chat_Room_Socket_(Delphi)" title="Recent changes in pages linked from this page [shift-esc-k]" accesskey="k">Related changes</a></li>
+				<li id="t-specialpages"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/Special:SpecialPages" title="A list of all special pages [shift-esc-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/index.php?title=Chat_Room_Socket_(Delphi)&amp;printable=yes" rel="alternate" title="Printable version of this page [shift-esc-p]" accesskey="p">Printable version</a></li>
+				<li id="t-permalink"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/index.php?title=Chat_Room_Socket_(Delphi)&amp;oldid=27424" title="Permanent link to this revision of the page">Permanent link</a></li>
+				<li id="t-info"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/e/index.php?title=Chat_Room_Socket_(Delphi)&amp;action=info">Page information</a></li>
+			</ul>
+		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 7 March 2014, at 17:40.</li>
+		<li id="privacy"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/RAD_Studio_Code_Examples:Privacy_policy" title="RAD Studio Code Examples:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/RAD_Studio_Code_Examples:About" title="RAD Studio Code Examples:About">About RAD Studio Code Examples</a></li>
+		<li id="disclaimer"><a href="http://docwiki.embarcadero.com/CodeExamples/Tokyo/en/RAD_Studio_Code_Examples:General_disclaimer" title="RAD Studio Code Examples:General disclaimer">Disclaimers</a></li>
+ 
+
+	<li id="contactus">Help Feedback (<a title="Create a Jira ticket with your EDN account" href="https://quality.embarcadero.com/secure/CreateIssueDetails!init.jspa?pid=10000&amp;summary=%5BCodeExamples%2FTokyo%2Fen%5D+Feedback+about+%22Chat+Room+Socket+%28Delphi%29%22&amp;issuetype=6&amp;versions=11700">QP</a>,
+	<a title="Send us an email" href="mailto:documentation@embarcadero.com?subject=%5BBerlin%5D%20Chat%20Room%20Socket%20%28Delphi%29">email</a>)</li>
+    </ul>	
+</div>
+</div>
+<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"site":"ready","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["ext.treeandmenu","mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"],null,true);
+}</script>
+<script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":126});
+}</script><script type="text/javascript" src="./Chat Room Socket (Delphi) - RAD Studio Code Examples_files/jquery.cookie.js.téléchargé"></script>
+<script type="text/javascript" src="./Chat Room Socket (Delphi) - RAD Studio Code Examples_files/jquery.fixedtableheader.js.téléchargé"></script>
+<script type="text/javascript" src="./Chat Room Socket (Delphi) - RAD Studio Code Examples_files/jquery.protected.js.téléchargé"></script>
+<style type="text/css">.appmethod { display:none; }</style><script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Chat Room Socket (Delphi) - RAD Studio Code Examples_files/ga.js.téléchargé" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7083814-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<div class="suggestions" style="display: none; font-size: 11.4617px;"><div class="suggestions-results"></div><div class="suggestions-special"></div></div></body></html>

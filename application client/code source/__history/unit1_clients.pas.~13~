@@ -1,0 +1,99 @@
+unit unit1_clients;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  System.Win.ScktComp;
+
+type
+  TForm1 = class(TForm)
+    Panel1: TPanel;
+    IP: TLabel;
+    Port: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    GroupBox1: TGroupBox;
+    CheckBox1: TCheckBox;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Address: TLabel;
+    Host: TLabel;
+    Button1: TButton;
+    Panel2: TPanel;
+    Button2: TButton;
+    Edit5: TEdit;
+    Memo1: TMemo;
+    ClientSocket1: TClientSocket;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure ClientSocket1Connect(Sender: TObject; Socket: TCustomWinSocket);
+    procedure ClientSocket1Disconnect(Sender: TObject;
+      Socket: TCustomWinSocket);
+    procedure ClientSocket1Read(Sender: TObject; Socket: TCustomWinSocket);
+    procedure ClientSocket1Error(Sender: TObject; Socket: TCustomWinSocket;
+      ErrorEvent: TErrorEvent; var ErrorCode: Integer);
+
+  private
+    { Déclarations privées }
+  public
+    { Déclarations publiques }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+ClientSocket1.Active:=False;
+ClientSocket1.Host:=Edit2.Text;
+ClientSocket1.Port:=StrToInt(Edit1.Text);
+ClientSocket1.Active:=True;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+var msg : string ;
+begin
+ClientSocket1.Socket.SendText(Edit5.Text);
+msg := Edit5.Text ;
+Memo1.Lines.Add('Moi : '+msg+#13#10);
+Edit5.Text:='';
+end;
+
+procedure TForm1.ClientSocket1Connect(Sender: TObject;
+  Socket: TCustomWinSocket);
+begin
+CheckBox1.Checked:=Socket.Connected;
+Edit3.Text:=Socket.LocalAddress;
+Edit4.Text:=Socket.LocalHost;
+Memo1.Lines.Clear;
+
+end;
+
+procedure TForm1.ClientSocket1Disconnect(Sender: TObject;
+  Socket: TCustomWinSocket);
+begin
+CheckBox1.Checked:=Socket.Connected;
+end;
+
+procedure TForm1.ClientSocket1Error(Sender: TObject; Socket: TCustomWinSocket;
+  ErrorEvent: TErrorEvent; var ErrorCode: Integer);
+begin
+  ErrorCode:=0;
+  ClientSocket1.Active := False;
+  Memo1.Text:=Memo1.Text+('le serveur or connection '+#13#10);
+end;
+
+procedure TForm1.ClientSocket1Read(Sender: TObject; Socket: TCustomWinSocket);
+begin
+Memo1.Lines.Add(ClientSocket1.Socket.ReceiveText);
+end;
+
+end.

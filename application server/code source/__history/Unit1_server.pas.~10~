@@ -1,0 +1,109 @@
+unit Unit1_server;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  System.Win.ScktComp;
+
+type
+  TForm1 = class(TForm)
+    Panel1: TPanel;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    Edit1: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    Label1: TLabel;
+    Button1: TButton;
+    CheckBox1: TCheckBox;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Edit2: TEdit;
+    Button2: TButton;
+    Memo1: TMemo;
+    ServerSocket1: TServerSocket;
+    procedure ServerSocket1ClientRead(Sender: TObject;
+      Socket: TCustomWinSocket);
+    procedure ServerSocket1Accept(Sender: TObject; Socket: TCustomWinSocket);
+    procedure Button2Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure ServerSocket1ClientConnect(Sender: TObject;
+      Socket: TCustomWinSocket);
+   //procedure FormActivate(Sender: TObject);
+     private
+    { Déclarations privées }
+  public
+    { Déclarations publiques }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+
+
+
+procedure TForm1.Button1Click(Sender: TObject);
+var port:Integer;
+begin
+ServerSocket1.Active:=False;
+port:=StrToInt(Edit1.Text);
+ServerSocket1.Port:=port;
+ServerSocket1.Active:=True;
+Edit5.Text:='Listening...';
+//edit2.Enabled := true  ;
+//Button2.Enabled:= true  ;  <<---Pour activation de boite de information message
+//Memo1.Enabled:= true ;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+var msg :string ;
+begin
+msg := Edit2.Text   ;
+ServerSocket1.Socket.Connections[0].SendText(Edit2.Text);
+Memo1.Lines.Add('Me : '+msg+#13#10);
+Edit2.Text:='';
+end;
+
+//procedure TForm1.FormActivate(Sender: TObject);
+//begin
+//edit2.Enabled := false  ;
+//Button2.Enabled:= false  ;  <<-- pour desactivate la boite de information message ou debut de programm
+//Memo1.Enabled:= False ;
+//end;
+
+procedure TForm1.ServerSocket1Accept(Sender: TObject; Socket: TCustomWinSocket);
+begin
+CheckBox1.Checked:=true;
+Edit3.Text:=Socket.RemoteAddress;
+Edit4.Text:=Socket.RemoteHost;
+Edit6.Text:=Socket.LocalAddress;
+Edit5.Text:='Connected';
+end;
+
+procedure TForm1.ServerSocket1ClientConnect(Sender: TObject;
+  Socket: TCustomWinSocket);
+begin
+ ServerSocket1.Active:=true ;
+ Socket.SendText('Server Connected'+#13#10);
+ CheckBox1.Checked:=true;
+
+end;
+
+procedure TForm1.ServerSocket1ClientRead(Sender: TObject;
+  Socket: TCustomWinSocket);
+begin
+Memo1.Lines.Add(Socket.RemoteHost+' : '+Socket.ReceiveText);
+end;
+
+end.

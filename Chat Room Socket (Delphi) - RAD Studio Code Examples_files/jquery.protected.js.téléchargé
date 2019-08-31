@@ -1,0 +1,21 @@
+var toggleProtected = function() {
+    $('.inherited').show();
+    $('.protected').show();
+    
+    if($('#inheritcheck') && !$('#inheritcheck').prop('checked')) {
+	$('.inherited').hide();
+    }
+    if(!$('#protectcheck').prop('checked')) {
+	$('.protected').hide();
+    }
+    $("table.long tr").removeClass('alt');
+    $("table.long tr:visible:even").addClass('alt');
+}
+$(document).ready(function(){
+    $("#protectcheck").click(toggleProtected);
+    $("#inheritcheck").click(toggleProtected);
+    if($('.protected').length != 0) { 
+	$("#protecttoggle").show();
+        toggleProtected();
+    }
+});

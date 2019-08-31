@@ -1,0 +1,54 @@
+function setcookie() {
+	var oldval = $.cookie('vcl_lang');
+	var newval = '';
+	var dcheck = $('#dtoggle').prop('checked');
+	var ccheck = $('#ctoggle').prop('checked');
+	if (dcheck && !ccheck)
+		newval = 'delphi';
+	else if (!dcheck && ccheck)
+		newval = 'cpp';
+	if (oldval != newval)
+		$.cookie('vcl_lang', newval, {path: "/", expires: 365});
+}
+
+
+$(document).ready(function(){
+	$("span.short").parent('p').hide(); 
+	if ($.cookie('vcl_lang') != null) {
+		lang = $.cookie('vcl_lang');
+		if (lang == 'delphi') {
+			$('.cpp:not(.delphi)').hide();
+			$('#ctoggle').prop('checked', false);
+		}
+		if (lang == 'cpp') {
+			$('.delphi:not(.cpp)').hide();
+			$('#dtoggle').prop('checked', false);
+		}
+	}
+	$("#dtoggle").click(function(){
+		$('span.cpp:not(.delphi),div.cpp:not(.delphi)').show(100);
+		$('span.delphi:not(.cpp),div.delphi:not(.cpp)').toggle(100);
+		$('table.long tr.cpp:not(.delphi)').show();
+		$('table.long tr.delphi:not(.cpp)').toggle();
+		$('#ctoggle').prop('checked', true);
+		setcookie();
+		$("table.long tr").removeClass('alt');
+		$("table.long tr:visible:even").addClass('alt');
+	});
+	$("#ctoggle").click(function(){
+		$('span.delphi:not(.cpp),div.delphi:not(.cpp)').show(100);
+		$('span.cpp:not(.delphi),div.cpp:not(.delphi)').toggle(100);
+		$('table.long tr.delphi:not(.cpp)').show();
+		$('table.long tr.cpp:not(.delphi)').toggle();
+		$('#dtoggle').prop('checked', true);
+		setcookie();
+		$("table.long tr").removeClass('alt');
+		$("table.long tr:visible:odd").addClass('alt');
+	});
+	$("#displayPrefTab").click(function(){
+		$("#displayPrefs").toggle();
+	});
+	$("table.long tr").mouseover(function(){$(this).addClass("over");}).mouseout(function(){$(this).removeClass("over");});
+	$("table.long tr:visible:even").addClass('alt');
+});
+

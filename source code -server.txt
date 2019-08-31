@@ -1,0 +1,82 @@
+Source code for server app :
+unit Main;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ScktComp, StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    CheckBox1: TCheckBox;
+    Edit1: TEdit;
+    Button1: TButton;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Edit6: TEdit;
+    Label6: TLabel;
+    Button2: TButton;
+    Memo1: TMemo;
+    ServerSocket1: TServerSocket;
+    procedure Button1Click(Sender: TObject);
+    procedure ServerSocket1Accept(Sender: TObject; Socket: TCustomWinSocket);
+    procedure Button2Click(Sender: TObject);
+    procedure ServerSocket1ClientRead(Sender: TObject;
+      Socket: TCustomWinSocket);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+port:Integer;
+begin
+ServerSocket1.Active:=False;
+port:=StrToInt(Edit1.Text);
+ServerSocket1.Port:=port;
+ServerSocket1.Active:=True;
+Edit4.Text:='Listening...';
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+ServerSocket1.Socket.Connections[0].SendText(Edit6.Text);
+Memo1.Lines.Add('Me : '+Edit6.Text);
+Edit6.Text:='';
+end;
+
+procedure TForm1.ServerSocket1Accept(Sender: TObject; Socket: TCustomWinSocket);
+begin
+CheckBox1.Checked:=true;
+Edit2.Text:=Socket.RemoteAddress;
+Edit3.Text:=Socket.RemoteHost;
+Edit5.Text:=Socket.LocalAddress;
+Edit4.Text:='Connected';
+end;
+
+procedure TForm1.ServerSocket1ClientRead(Sender: TObject;
+  Socket: TCustomWinSocket);
+begin
+Memo1.Lines.Add(Socket.RemoteHost+' : '+Socket.ReceiveText);
+end;
+
+end.
